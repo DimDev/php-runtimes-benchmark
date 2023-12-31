@@ -1,0 +1,36 @@
+services:
+  apache_fastcgi:
+    build:
+      context: ../../
+      dockerfile: ./runtimes/002_apache_phpfpm/apache/apache.Dockerfile
+    container_name: apache_fastcgi
+    hostname: symfony7site.dev
+    volumes:
+      - ../../projects/symfony-7:/var/www/symfony
+    ports:
+      - "80:80"
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+  php-fpm:
+    build:
+      context: ../../
+      dockerfile: ./runtimes/002_apache_phpfpm/fpm/phpfpm.Dockerfile
+    container_name: phpfpm
+    ports:
+      - "9001:9001"
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+
+networks:
+  php-benchmarks:
+
