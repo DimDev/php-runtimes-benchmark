@@ -63,3 +63,20 @@ stop-nginx-phpfpm:
 exec-nginx-phpfpm:
 	@docker container exec -it nginx_phpfpm bash
 
+
+#############################################################################
+## start-nginx-unit	:	Start nginx-unit.
+start-nginx-unit:
+	cd runtimes/004_nginx_unit && docker compose up -d --force-recreate
+
+## stop-nginx-unit	:	Stop nginx-unit.
+stop-nginx-unit:
+	cd runtimes/004_nginx_unit && docker compose stop
+
+## exec-nginx-unit	:	Login to nginx-unit.
+exec-nginx-unit:
+	@docker container exec -it nginx_unit bash
+
+## rebuild-nginx-unit	:	Build&Start nginx-unit.
+rebuild-nginx-unit:
+	cd runtimes/004_nginx_unit && docker compose up -d --force-recreate --build
