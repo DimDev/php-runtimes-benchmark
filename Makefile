@@ -18,6 +18,8 @@ stop-apache-modphp-prefork:
 exec-apache-modphp-prefork:
 	@docker container exec -it apache_modphp_prefork bash
 
+#############################################################################
+
 ## start-apache-modphp-prefork-dev	:	Start apache-modphp-prefork-dev.
 start-apache-modphp-prefork-dev:
 	cd runtimes/001_apache_mod_php_prefork && docker compose -f docker-compose-dev.yaml up -d --force-recreate
@@ -29,6 +31,8 @@ stop-apache-modphp-prefork-dev:
 ## exec-apache-modphp-prefork	:	Login to apache-modphp-prefork-dev.
 exec-apache-modphp-prefork-dev:
 	@docker container exec -it apache_modphp_prefork_dev bash
+
+#############################################################################
 
 ## start-apache-phpfpm	:	Start apache-phpfpm.
 start-apache-phpfpm:
@@ -46,6 +50,16 @@ exec-apache-phpfpm:
 rebuild-apache-phpfpm:
 	cd runtimes/002_apache_phpfpm && docker compose -f docker-compose.yaml up -d --force-recreate --build
 
+#############################################################################
+## start-nginx-phpfpm	:	Start nginx-phpfpm.
+start-nginx-phpfpm:
+	cd runtimes/003_nginx_phpfpm && docker compose up -d --force-recreate
 
+## stop-nginx-phpfpm	:	Stop nginx-phpfpm.
+stop-nginx-phpfpm:
+	cd runtimes/003_nginx_phpfpm && docker compose stop
 
+## exec-nginx-phpfpm	:	Login to nginx-phpfpm.
+exec-nginx-phpfpm:
+	@docker container exec -it nginx_phpfpm bash
 
