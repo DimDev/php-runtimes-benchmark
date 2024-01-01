@@ -29,8 +29,11 @@ class FrontpageController extends AbstractController
     {
         ob_start();
         phpinfo();
-        $phpinfo = ob_end_flush();
-
+        $phpinfo = ob_get_contents();
+        ob_clean();
+        if(php_sapi_name() === 'cli') {
+            return new Response("<pre>{$phpinfo}</pre>");
+        }
         return new Response($phpinfo);
     }
 }

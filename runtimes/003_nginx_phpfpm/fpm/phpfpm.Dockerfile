@@ -16,7 +16,6 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
         zip && \
     install-php-extensions @composer;
 
-#COPY --chown=www-data:www-data ../../projects/symfony-7 /var/www/symfony
 COPY "./projects/symfony-7" "/var/www/symfony"
 
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini;

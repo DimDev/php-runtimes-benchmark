@@ -80,3 +80,16 @@ exec-nginx-unit:
 ## rebuild-nginx-unit	:	Build&Start nginx-unit.
 rebuild-nginx-unit:
 	cd runtimes/004_nginx_unit && docker compose up -d --force-recreate --build
+
+#############################################################################
+## start-roadrunner	:	Start roadrunner.
+start-roadrunner:
+	cd runtimes/005_roadrunner && docker compose up -d --force-recreate
+
+## stop-roadrunner	:	Stop roadrunner.
+stop-roadrunner:
+	cd runtimes/005_roadrunner && docker compose stop
+
+## rebuild-roadrunner	:	Build&Start roadrunner.
+rebuild-roadrunner:
+	cd runtimes/005_roadrunner && docker compose up -d --force-recreate --build

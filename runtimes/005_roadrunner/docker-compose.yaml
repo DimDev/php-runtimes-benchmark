@@ -1,9 +1,9 @@
 services:
-  nginx-unit:
+  roadrunner:
     build:
       context: ../../
-      dockerfile: "./runtimes/004_nginx_unit/unit/unit.Dockerfile"
-    container_name: "004_nginx_unit"
+      dockerfile: "./runtimes/005_roadrunner/roadrunner/roadrunner.Dockerfile"
+    container_name: "005_roadrunner"
     ports:
       - '80:80'
     deploy:
