@@ -32,8 +32,11 @@ WORKDIR /var/www/symfony
 
 RUN cp .env.example .env.local
 
-RUN composer install --no-dev && \
+RUN rm -rf vendor && \
+    composer install --no-dev --no-scripts --prefer-dist --no-interaction && \
     composer dump-autoload --no-dev --classmap-authoritative && \
+    composer check-platform-reqs && \
+    php bin/console cache:clear && \
     php bin/console cache:warmup
 
 EXPOSE 80
