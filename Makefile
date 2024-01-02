@@ -158,4 +158,21 @@ rebuild-frankenphp-workermode:
 shell-frankenphp-workermode:
 	docker container exec -it 008_frankenphp_workermode bash
 
+##
+#################### OPENSWOOLE ####################
+##
+## start-openswoole	:	Start frankenphp.
+start-openswoole:
+	cd runtimes/009_openswoole && docker compose up -d --force-recreate
 
+## stop-openswoole	:	Stop openswoole.
+stop-openswoole:
+	cd runtimes/009_openswoole && docker compose stop
+
+## rebuild-openswoole	:	Build&Start openswoole.
+rebuild-openswoole:
+	cd runtimes/009_openswoole && docker compose up -d --force-recreate --build
+
+## shell-openswoole	:	Login to openswoole running container
+shell-openswoole:
+	docker container exec -it 009_openswoole bash

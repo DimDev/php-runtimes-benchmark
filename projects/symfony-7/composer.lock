@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6df3d980257fc5e67b59c71543a6c311",
+    "content-hash": "ec56e9b2048015143b51b4aef87ec0fd",
     "packages": [
         {
             "name": "baldinof/roadrunner-bundle",
@@ -453,6 +453,62 @@
                 }
             ],
             "time": "2023-12-12T12:06:11+00:00"
+        },
+        {
+            "name": "runtime/swoole",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-runtime/swoole.git",
+                "reference": "d27c224770b16e9ac6a6752ef862fe83cadf87f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-runtime/swoole/zipball/d27c224770b16e9ac6a6752ef862fe83cadf87f6",
+                "reference": "d27c224770b16e9ac6a6752ef862fe83cadf87f6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "symfony/runtime": "^5.4.26 || ^6.3.2 || ^7.0"
+            },
+            "conflict": {
+                "ext-swoole": "<4.6.0"
+            },
+            "require-dev": {
+                "illuminate/http": "^9.14",
+                "phpunit/phpunit": "^9.6.15",
+                "swoole/ide-helper": "^4.6",
+                "symfony/http-foundation": "^5.4.32 || ^6.3.9 || ^7.0",
+                "symfony/http-kernel": "^5.4.33 || ^6.3.10 || ^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Runtime\\Swoole\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com"
+                }
+            ],
+            "description": "Swoole runtime",
+            "support": {
+                "source": "https://github.com/php-runtime/swoole/tree/0.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/nyholm",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-12-12T11:39:12+00:00"
         },
         {
             "name": "spiral/goridge",

@@ -1,0 +1,13 @@
+services:
+  frankenphp:
+    build:
+      context: ../../
+      dockerfile: "./runtimes/009_openswoole/openswoole/openswoole.Dockerfile"
+    container_name: "009_openswoole"
+    ports:
+      - '80:80'
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
