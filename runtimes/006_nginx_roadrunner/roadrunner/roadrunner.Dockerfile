@@ -27,7 +27,7 @@ COPY "./projects/symfony-7" "/var/www/symfony"
 WORKDIR /var/www/symfony
 
 RUN cp .env.example .env.local && \
-    cp .rr.production.yaml .rr.yaml
+    cp .rr.fcgi.yaml .rr.yaml
 
 RUN rm -rf vendor && \
     composer install --no-dev --no-scripts --prefer-dist --no-interaction && \
@@ -38,6 +38,6 @@ RUN rm -rf vendor && \
 
 COPY --from=ghcr.io/roadrunner-server/roadrunner:2023.3.8 /usr/bin/rr /usr/bin/rr
 
-EXPOSE 80
+EXPOSE 9000
 
 CMD ["rr", "serve"]

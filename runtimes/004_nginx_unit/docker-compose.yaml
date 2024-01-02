@@ -6,8 +6,12 @@ services:
     container_name: "004_nginx_unit"
     ports:
       - '80:80'
+    networks:
+      - php-benchmarks
     deploy:
       resources:
         limits:
           cpus: '1'
           memory: '1gb'
+networks:
+  php-benchmarks:

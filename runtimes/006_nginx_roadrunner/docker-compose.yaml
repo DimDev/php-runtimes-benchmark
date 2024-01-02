@@ -1,0 +1,30 @@
+services:
+  nginx-fastcgi:
+    image: nginx:1.25.3
+    container_name: "006_nginx"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ../../projects/symfony-7:/var/www/symfony
+    ports:
+      - '80:80'
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+  roadrunner:
+    build:
+      context: ../../
+      dockerfile: "./runtimes/006_nginx_roadrunner/roadrunner/roadrunner.Dockerfile"
+    container_name: "006_roadrunner"
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+networks:
+  php-benchmarks:
