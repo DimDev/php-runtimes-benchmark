@@ -19,7 +19,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
         zip && \
     install-php-extensions @composer;
 
-RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 COPY ./runtimes/005_roadrunner/roadrunner/php.ini /usr/local/etc/php/conf.d/custom-php.ini
 
 COPY "./projects/symfony-7" "/var/www/symfony"

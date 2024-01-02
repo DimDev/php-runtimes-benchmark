@@ -118,3 +118,44 @@ stop-nginx-roadrunner:
 ## rebuild-nginx-roadrunner	:	Build&Start nginx+roadrunner.
 rebuild-nginx-roadrunner:
 	cd runtimes/006_nginx_roadrunner && docker compose up -d --force-recreate --build
+
+
+##
+#################### FRANKENPHP ####################
+##
+## start-frankenphp	:	Start frankenphp.
+start-frankenphp:
+	cd runtimes/007_frankenphp && docker compose up -d --force-recreate
+
+## stop-frankenphp	:	Stop frankenphp.
+stop-frankenphp:
+	cd runtimes/007_frankenphp && docker compose stop
+
+## rebuild-frankenphp	:	Build&Start frankenphp.
+rebuild-frankenphp:
+	cd runtimes/007_frankenphp && docker compose up -d --force-recreate --build
+
+## shell-frankenphp	:	Login to frankenphp running container
+shell-frankenphp:
+	docker container exec -it 007_frankenphp bash
+
+##
+#################### FRANKENPHP WORKERMODE ####################
+##
+## start-frankenphp-workermode	:	Start frankenphp.
+start-frankenphp-workermode:
+	cd runtimes/008_frankenphp_workermode && docker compose up -d --force-recreate
+
+## stop-frankenphp-workermode	:	Stop frankenphp-workermode.
+stop-frankenphp-workermode:
+	cd runtimes/008_frankenphp_workermode && docker compose stop
+
+## rebuild-frankenphp-workermode	:	Build&Start frankenphp-workermode.
+rebuild-frankenphp-workermode:
+	cd runtimes/008_frankenphp_workermode && docker compose up -d --force-recreate --build
+
+## shell-frankenphp-workermode	:	Login to frankenphp-workermode running container
+shell-frankenphp-workermode:
+	docker container exec -it 008_frankenphp_workermode bash
+
+

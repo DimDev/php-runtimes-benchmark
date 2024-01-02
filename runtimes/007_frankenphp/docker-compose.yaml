@@ -1,0 +1,13 @@
+services:
+  frankenphp:
+    build:
+      context: ../../
+      dockerfile: "./runtimes/007_frankenphp/frankenphp/frankenphp.Dockerfile"
+    container_name: "007_frankenphp"
+    ports:
+      - '80:80'
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
