@@ -1,0 +1,20 @@
+services:
+  007_frankenphp:
+    build:
+      context: ../../
+      dockerfile: "./runtimes/007_frankenphp/frankenphp/frankenphp.Dockerfile"
+    image: "007_frankenphp"
+    container_name: "007_frankenphp"
+    hostname: symfony7site
+    networks:
+      - php-benchmarks
+    ports:
+      - '80:80'
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+networks:
+  php-benchmarks:
+    name: php-benchmarks

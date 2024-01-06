@@ -1,0 +1,20 @@
+services:
+  008_frankenphp_workermode:
+    build:
+      context: ../../
+      dockerfile: "./runtimes/008_frankenphp_workermode/frankenphp/frankenphp.Dockerfile"
+    image: "008_frankenphp_workermode"
+    container_name: "008_frankenphp_workermode"
+    hostname: symfony7site
+    networks:
+      - php-benchmarks
+    ports:
+      - '80:80'
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+networks:
+  php-benchmarks:
+    name: php-benchmarks

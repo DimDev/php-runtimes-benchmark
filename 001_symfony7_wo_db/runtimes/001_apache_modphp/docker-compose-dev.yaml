@@ -1,0 +1,24 @@
+services:
+  apache_modphp_prefork:
+    image: php:8.3-apache
+    container_name: apache_modphp_prefork_dev
+    hostname: symfony7site.dev
+    volumes:
+      - ./sites-enabled:/etc/apache2/sites-enabled
+      - ./mods-available/status.conf:/etc/apache2/mods-available/status.conf
+      - ./mods-available/mpm_prefork.conf:/etc/apache2/mods-available/mpm_prefork.conf
+      - ../../projects/symfony-7:/var/www/symfony
+    ports:
+      - "80:80"
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+
+
+networks:
+  php-benchmarks:
+

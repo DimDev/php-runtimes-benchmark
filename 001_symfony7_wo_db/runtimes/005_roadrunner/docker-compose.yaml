@@ -1,0 +1,20 @@
+services:
+  005_roadrunner:
+    build:
+      context: ../../
+      dockerfile: "./runtimes/005_roadrunner/roadrunner/roadrunner.Dockerfile"
+    image: "005_roadrunner"
+    container_name: "005_roadrunner"
+    hostname: symfony7site
+    ports:
+      - '80:80'
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+networks:
+  php-benchmarks:
+    name: php-benchmarks

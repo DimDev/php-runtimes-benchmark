@@ -1,0 +1,38 @@
+services:
+  003_nginx:
+    build:
+      context: ../../
+      dockerfile: ./runtimes/003_nginx_phpfpm/nginx/nginx.Dockerfile
+    image: 003_nginx
+    container_name: "003_nginx"
+    hostname: symfony7site
+    ports:
+      - '80:80'
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+
+  003_phpfpm:
+    build:
+      context: ../../
+      dockerfile: ./runtimes/003_nginx_phpfpm/fpm/phpfpm.Dockerfile
+    image: 003_phpfpm
+    container_name: "003_phpfpm"
+    ports:
+      - "9001:9001"
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+
+networks:
+  php-benchmarks:
+    name: php-benchmarks
+

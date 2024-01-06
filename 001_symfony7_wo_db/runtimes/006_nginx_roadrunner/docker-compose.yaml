@@ -1,0 +1,34 @@
+services:
+  006_nginx:
+    build:
+      context: ../../
+      dockerfile: "./runtimes/006_nginx_roadrunner/nginx/nginx.Dockerfile"
+    image: 006_nginx
+    container_name: "006_nginx"
+    hostname: symfony7site
+    ports:
+      - '80:80'
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+
+  006_roadrunner:
+    build:
+      context: ../../
+      dockerfile: "./runtimes/006_nginx_roadrunner/roadrunner/roadrunner.Dockerfile"
+    image: "006_roadrunner"
+    container_name: "006_roadrunner"
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+networks:
+  php-benchmarks:
+    name: php-benchmarks

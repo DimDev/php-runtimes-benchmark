@@ -1,0 +1,69 @@
+{
+  "listeners": {
+    "*:80": {
+      "pass": "routes"
+    }
+  },
+  "routes": [
+    {
+      "match": {
+        "host": "symfony7site"
+      },
+      "action": {
+        "pass": "applications/symfony/index"
+      }
+    },
+    {
+      "match": {
+        "host": "localhost"
+      },
+      "action": {
+        "pass": "applications/symfony/index"
+      }
+    }
+  ],
+  "applications": {
+    "symfony": {
+      "type": "php",
+      "processes": {
+        "spare": 1,
+        "idle_timeout": 20
+      },
+      "targets": {
+        "direct": {
+          "root": "/var/www/symfony/public/"
+        },
+        "index": {
+          "root": "/var/www/symfony/public/",
+          "script": "index.php"
+        }
+      },
+      "options": {
+        "file": "/usr/local/etc/php/php.ini",
+        "admin": {
+          "date.timezone": "Europe/Warsaw",
+          "short_open_tag": "off",
+          "expose_php": "off",
+          "allow_url_fopen": "off",
+          "memory_limit": "128M",
+          "variables_order": "EGPCS",
+          "realpath_cache_size": "4096K",
+          "realpath_cache_ttl": "600",
+          "opcache.enable": "1",
+          "opcache.jit_buffer_size": "256M",
+          "opcache.jit": "tracing",
+          "opcache.preload": "/var/www/symfony/config/preload.php",
+          "opcache.preload_user": "root",
+          "opcache.validate_timestamps": "0",
+          "opcache.memory_consumption": "256",
+          "opcache.max_accelerated_files": "20000",
+        }
+      }
+    }
+  },
+  "settings": {
+    "http": {
+      "server_version": false
+    }
+  }
+}

@@ -1,0 +1,20 @@
+services:
+  004_nginx_unit:
+    build:
+      context: ../../
+      dockerfile: "./runtimes/004_nginx_unit/unit/unit.Dockerfile"
+    image: 004_nginx_unit
+    container_name: "004_nginx_unit"
+    hostname: symfony7site
+    ports:
+      - '80:80'
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+networks:
+  php-benchmarks:
+    name: php-benchmarks

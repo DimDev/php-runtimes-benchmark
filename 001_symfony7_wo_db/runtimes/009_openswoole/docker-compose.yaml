@@ -1,0 +1,21 @@
+services:
+  009_openswoole:
+    build:
+      context: ../../
+      dockerfile: "./runtimes/009_openswoole/openswoole/openswoole.Dockerfile"
+    image: "009_openswoole"
+    container_name: "009_openswoole"
+    hostname: symfony7site
+    ports:
+      - '80:80'
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+
+networks:
+  php-benchmarks:
+    name: php-benchmarks

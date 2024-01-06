@@ -1,0 +1,37 @@
+services:
+  002_apache:
+    build:
+      context: ../../
+      dockerfile: ./runtimes/002_apache_phpfpm/apache/apache.Dockerfile
+    image: 002_apache
+    container_name: 002_apache
+    hostname: symfony7site
+    ports:
+      - "80:80"
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+  002_phpfpm:
+    build:
+      context: ../../
+      dockerfile: ./runtimes/002_apache_phpfpm/fpm/phpfpm.Dockerfile
+    image: 002_phpfpm
+    container_name: 002_phpfpm
+    ports:
+      - "9001:9001"
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+
+networks:
+  php-benchmarks:
+    name: php-benchmarks
+
