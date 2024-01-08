@@ -81,6 +81,16 @@ make shell/runtime/002-phpfpm
 
 - http://localhost/fpm-status?html&full
 
+To calculate PHP-FPM pm.max_children, the following formula was used:
+```
+pm.max_children = Memory available to container / Memory consumed by 1 process
+```
+
+Memory consumed by 1 process:
+```shell
+ps --no-headers -o "rss,cmd" -C php-fpm | awk '{ sum+=$1 } END { printf ("%d%s\n", sum/NR/1024,"Mb") }'
+```
+
 ```shell
 make start/runtime/003-nginx-phpfpm
 make stop/runtime/003-nginx-phpfpm
