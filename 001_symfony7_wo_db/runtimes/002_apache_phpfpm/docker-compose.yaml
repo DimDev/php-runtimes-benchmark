@@ -15,6 +15,9 @@ services:
         limits:
           cpus: '1'
           memory: '1gb'
+        reservations:
+          cpus: '1'
+          memory: '1gb'
   002_phpfpm:
     build:
       context: ../../
@@ -28,6 +31,9 @@ services:
     deploy:
       resources:
         limits:
+          cpus: '1'
+          memory: '1gb'
+        reservations:
           cpus: '1'
           memory: '1gb'
 

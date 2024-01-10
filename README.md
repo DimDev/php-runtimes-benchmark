@@ -25,6 +25,19 @@ The repo contains the Symfony 7 application skeleton to be run in different runt
 
 Load tests are run inside docker container, which is in the same network as the runtime.
 
+### Bombardier
+
+- https://pkg.go.dev/github.com/codesenberg/bombardier
+- https://hub.docker.com/r/alpine/bombardier
+
+```shell
+make run/loadtest/bombardier-c5-d30s # Run bombardier concurrent connections: 5, duration: 30s
+make run/loadtest/bombardier-c10-d30s # Run bombardier concurrent connections: 10, duration: 30s
+make run/loadtest/bombardier-c100-d30s # Run bombardier concurrent connections: 100, duration: 30s
+make run/loadtest/bombardier-c1000-d30s # Run bombardier concurrent connections: 1000, duration: 30s
+make run/loadtest/bombardier-c10000-d30s # Run bombardier concurrent connections: 10000, duration: 30s
+```
+
 ### Apache HTTP server benchmarking tool
 
 - https://httpd.apache.org/docs/2.4/programs/ab.html
@@ -38,11 +51,12 @@ make run/loadtest/ab-n10000-c1000
 ### K6 (by Grafana Labs)
 
 - https://k6.io/docs/
+- https://k6.io/docs/using-k6/metrics/reference/
 
 See js scripts in 001_symfony7_wo_db/testing-tools/k6
 
 ```shell
-make run/loadtest/k6-vus5-dur10s
+make run/loadtest/k6-vus5-dur30s
 make run/loadtest/k6-vus10-dur30s
 make run/loadtest/k6-vus100-dur30s
 make run/loadtest/k6-vus1000-dur30s

@@ -239,8 +239,8 @@ run/loadtest/ab-n10000-c1000:
 	docker run --rm --name ab-loadttest --network php-benchmarks httpd:2.4.58-bookworm ab -n 10000 -c 1000	"http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
 
 ## run/loadtest/k6-vus5-dur10s	:	Run k6 vus:5 duration: 10s
-run/loadtest/k6-vus5-dur10s:
-	docker run --rm --net php-benchmarks -i grafana/k6 run - <./testing-tools/k6/script_vus5_dur10s.js
+run/loadtest/k6-vus5-dur30s:
+	docker run --rm --net php-benchmarks -i grafana/k6 run - <./testing-tools/k6/script_vus5_dur30s.js
 
 ## run/loadtest/k6-vus10-dur30s	:	Run k6 vus:10 duration: 30s
 run/loadtest/k6-vus10-dur30s:
@@ -258,4 +258,22 @@ run/loadtest/k6-vus1000-dur30s:
 run/loadtest/k6-vus10000-dur30s:
 	docker run --rm --net php-benchmarks -i grafana/k6 run - <./testing-tools/k6/script_vus10000_dur30s.js
 
+## run/loadtest/bombardier-c5-d30s	:	Run bombardier concurrent connections: 5, duration: 30s
+run/loadtest/bombardier-c5-d30s:
+	docker run --rm --name bombardier-loadttest --network php-benchmarks  alpine/bombardier:1.2.6 -c 5 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
 
+## run/loadtest/bombardier-c10-d30s	:	Run bombardier concurrent connections: 10, duration: 30s
+run/loadtest/bombardier-c10-d30s:
+	docker run --rm --name bombardier-loadttest --network php-benchmarks  alpine/bombardier:1.2.6 -c 10 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
+
+## run/loadtest/bombardier-c100-d30s	:	Run bombardier concurrent connections: 100, duration: 30s
+run/loadtest/bombardier-c100-d30s:
+	docker run --rm --name bombardier-loadttest --network php-benchmarks  alpine/bombardier:1.2.6 -c 100 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
+
+## run/loadtest/bombardier-c1000-d30s	:	Run bombardier concurrent connections: 1000, duration: 30s
+run/loadtest/bombardier-c1000-d30s:
+	docker run --rm --name bombardier-loadttest --network php-benchmarks  alpine/bombardier:1.2.6 -c 1000 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
+
+## run/loadtest/bombardier-c10000-d30s	:	Run bombardier concurrent connections: 10000, duration: 30s
+run/loadtest/bombardier-c10000-d30s:
+	docker run --rm --name bombardier-loadttest --network php-benchmarks  alpine/bombardier:1.2.6 -c 10000 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
