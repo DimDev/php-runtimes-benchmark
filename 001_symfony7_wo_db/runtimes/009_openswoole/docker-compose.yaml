@@ -15,6 +15,9 @@ services:
         limits:
           cpus: '1'
           memory: '1gb'
+        reservations:
+          cpus: '1'
+          memory: '1gb'
 
 networks:
   php-benchmarks:
