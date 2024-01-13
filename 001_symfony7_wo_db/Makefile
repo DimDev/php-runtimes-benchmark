@@ -226,9 +226,13 @@ shell/runtime/009-openswoole:
 #################### Load Testing ####################
 ##
 
-## run/loadtest/ab-n100-c5	:	Run "ab -n 100 -c 5 URL"
-run/loadtest/ab-n100-c5:
-	docker run --rm --name ab-loadttest --network php-benchmarks httpd:2.4.58-bookworm ab -n 100 -c 5 "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
+## run/loadtest/ab-n1000-c5	:	Run "ab -n 1000 -c 5 URL"
+run/loadtest/ab-n1000-c5:
+	docker run --rm --name ab-loadttest --network php-benchmarks httpd:2.4.58-bookworm ab -n 1000 -c 5 "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
+
+## run/loadtest/ab-n1000-c10	:	Run "ab -n 1000 -c 10 URL"
+run/loadtest/ab-n1000-c10:
+	docker run --rm --name ab-loadttest --network php-benchmarks httpd:2.4.58-bookworm ab -n 1000 -c 10 "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
 
 ## run/loadtest/ab-n1000-c100	:	Run "ab -n 1000 -c 100 URL"
 run/loadtest/ab-n1000-c100:
@@ -277,3 +281,20 @@ run/loadtest/bombardier-c1000-d30s:
 ## run/loadtest/bombardier-c10000-d30s	:	Run bombardier concurrent connections: 10000, duration: 30s
 run/loadtest/bombardier-c10000-d30s:
 	docker run --rm --name bombardier-loadttest --network php-benchmarks  alpine/bombardier:1.2.6 -c 10000 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
+
+## run/loadtest/wrk-c5-d30s	:	Run wrk, concurrent connections: 5, duration: 30s
+run/loadtest/wrk-c5-d30s:
+	docker run --rm --name wrk-loadtest --network php-benchmarks williamyeh/wrk:4.0.2 -c 5 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
+
+
+## run/loadtest/wrk-c10-d30s	:	Run wrk, concurrent connections: 10, duration: 30s
+run/loadtest/wrk-c10-d30s:
+	docker run --rm --name wrk-loadtest --network php-benchmarks williamyeh/wrk:4.0.2 -c 10 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
+
+## run/loadtest/wrk-c100-d30s	:	Run wrk, concurrent connections: 100, duration: 30s
+run/loadtest/wrk-c100-d30s:
+	docker run --rm --name wrk-loadtest --network php-benchmarks williamyeh/wrk:4.0.2 -c 100 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
+
+## run/loadtest/wrk-c1000-d30s	:	Run wrk, concurrent connections: 1000, duration: 30s
+run/loadtest/wrk-c1000-d30s:
+	docker run --rm --name wrk-loadtest --network php-benchmarks williamyeh/wrk:4.0.2 -t 1 -c 1000 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
