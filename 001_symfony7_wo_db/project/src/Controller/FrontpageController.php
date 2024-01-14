@@ -20,6 +20,7 @@ class FrontpageController extends AbstractController
             [
                 'first_name' => $firstName,
                 'last_name' => $lastName,
+                'hrtime' => hrtime(true),
             ]
         );
     }
