@@ -10,7 +10,7 @@ The repo contains the Symfony 7 application skeleton to be run in different runt
 - Nginx + Roadrunner
 - FrankenPHP
 - FrankenPHP (worker mode)
-- Openswoole
+- Swoole
 
 ## URLs
 
@@ -189,17 +189,17 @@ make shell/runtime/008-frankenphp-workermode
 - FrankenPHP can't start with production version of php.ini, which is provided with official PHP image
 
 
-## 009: Openswoole
+## 009: Swoole
 
 The symfony/runtime component is used
 
 - https://github.com/php-runtime/swoole
-- https://openswoole.com/docs
+- https://swoole.com/docs
 
 ```shell
-make start/runtime/009-openswoole
-make stop/runtime/009-openswoole
-make rebuild/runtime/009-openswoole
-make down/runtime/009-openswoole
-make shell/runtime/009-openswoole
+make start/runtime/009-swoole
+make stop/runtime/009-swoole
+make rebuild/runtime/009-swoole
+make down/runtime/009-swoole
+make shell/runtime/009-swoole
 ```

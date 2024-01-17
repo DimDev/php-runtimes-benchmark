@@ -1,0 +1,24 @@
+services:
+  009_swoole:
+    build:
+      context: ../../
+      dockerfile: "./runtimes/009_swoole/swoole/swoole.Dockerfile"
+    image: "009_swoole"
+    container_name: "009_swoole"
+    hostname: symfony7site
+    ports:
+      - '80:80'
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+        reservations:
+          cpus: '1'
+          memory: '1gb'
+
+networks:
+  php-benchmarks:
+    name: php-benchmarks

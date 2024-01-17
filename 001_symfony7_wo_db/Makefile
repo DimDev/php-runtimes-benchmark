@@ -200,27 +200,27 @@ shell/runtime/008-frankenphp-workermode:
 	@docker container exec -it 008_frankenphp_workermode bash
 
 ##
-#################### 009 Openswoole ####################
+#################### 009 Swoole ####################
 ##
-## start/runtime/009-openswoole	:	Start 009 Runtime: Openswoole.
-start/runtime/009-openswoole:
-	cd runtimes/009_openswoole && docker compose up -d --force-recreate
+## start/runtime/009-swoole	:	Start 009 Runtime: Swoole.
+start/runtime/009-swoole:
+	cd runtimes/009_swoole && docker compose up -d --force-recreate
 
-## stop/runtime/009-openswoole	:	Stop 009 Runtime: Openswoole.
-stop/runtime/009-openswoole:
-	cd runtimes/009_openswoole && docker compose stop
+## stop/runtime/009-swoole	:	Stop 009 Runtime: Swoole.
+stop/runtime/009-swoole:
+	cd runtimes/009_swoole && docker compose stop
 
-## rebuild/runtime/009-openswoole	:	Rebuild&Start 009 Runtime: Openswoole
-rebuild/runtime/009-openswoole:
-	cd runtimes/009_openswoole && docker compose up -d --force-recreate --build
+## rebuild/runtime/009-swoole	:	Rebuild&Start 009 Runtime: Swoole
+rebuild/runtime/009-swoole:
+	cd runtimes/009_swoole && docker compose up -d --force-recreate --build
 
-## down/runtime/009-openswoole	:	Remove all related to 009 Runtime Openswoole.
-down/runtime/009-openswoole:
-	cd runtimes/009_openswoole && docker compose down
+## down/runtime/009-swoole	:	Remove all related to 009 Runtime Swoole.
+down/runtime/009-swoole:
+	cd runtimes/009_swoole && docker compose down
 
-## shell/runtime/009-openswoole	:	Login to 009 Runtime: Openswoole.
-shell/runtime/009-openswoole:
-	@docker container exec -it 009_openswoole bash
+## shell/runtime/009-swoole	:	Login to 009 Runtime: Swoole.
+shell/runtime/009-swoole:
+	@docker container exec -it 009_swoole bash
 
 ##
 #################### Load Testing ####################
