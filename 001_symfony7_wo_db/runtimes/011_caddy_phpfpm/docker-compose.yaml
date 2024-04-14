@@ -1,0 +1,44 @@
+services:
+  003_nginx:
+    build:
+      context: ../../
+      dockerfile: ./runtimes/011_caddy_phpfpm/caddy/caddy.Dockerfile
+    image: 011_caddy
+    container_name: "011_caddy"
+    hostname: symfony7site
+    ports:
+      - '8000:80'
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+        reservations:
+          cpus: '1'
+          memory: '1gb'
+
+  003_phpfpm:
+    build:
+      context: ../../
+      dockerfile: ./runtimes/011_caddy_phpfpm/fpm/phpfpm.Dockerfile
+    image: 011_phpfpm
+    container_name: "011_phpfpm"
+    ports:
+      - "9000:9000"
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+        reservations:
+          cpus: '1'
+          memory: '1gb'
+
+networks:
+  php-benchmarks:
+    name: php-benchmarks
+
