@@ -1,7 +1,5 @@
 services:
   010_adapterman:
-    # environment:
-    #   COMPOSER_ALLOW_SUPERUSER: 1
     build:
       context: ../../
       dockerfile: "./runtimes/010_adapterman/adapterman/adapterman.Dockerfile"

@@ -7,8 +7,9 @@ use Workerman\Worker;
 
 Adapterman::init();
 
-$http_worker                = new Worker('http://0.0.0.0:80');
-$http_worker->name          = 'AdapterMan';
+$http_worker         = new Worker('http://0.0.0.0:80');
+$http_worker->count  = 1; // Only 1 worker
+$http_worker->name   = 'AdapterMan';
 
 $http_worker->onWorkerStart = static function () {
 
