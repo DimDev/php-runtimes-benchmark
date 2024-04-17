@@ -1,0 +1,5 @@
+# {$SERVER_NAME:localhost} {
+http://localhost http://symfony7site {
+    root * /var/www/symfony/public
+    php_fastcgi 011_phpfpm:9000
+}

@@ -223,6 +223,29 @@ shell/runtime/009-swoole:
 	@docker container exec -it 009_swoole bash
 
 ##
+
+#################### 011 Caddy + PHP-FPM ####################
+##
+## start/runtime/011-caddy-phpfpm	:	Start 011 Runtime: Caddy + PHP-FPM.
+start/runtime/011-caddy-phpfpm:
+	cd runtimes/011_caddy_phpfpm && docker compose up -d --force-recreate
+
+## stop/runtime/011-caddy-phpfpm	:	Stop 011 Runtime: Caddy + PHP-FPM.
+stop/runtime/011-caddy-phpfpm:
+	cd runtimes/011_caddy_phpfpm && docker compose stop
+
+## rebuild/runtime/011-caddy-phpfpm	:	Rebuild&Start 011 Runtime: Caddy + PHP-FPM.
+rebuild/runtime/011-caddy-phpfpm:
+	cd runtimes/011_caddy_phpfpm && docker compose up -d --force-recreate --build
+
+## down/runtime/011-caddy-phpfpm	:	Remove all related to 011 Runtime Caddy + PHP-FPM..
+down/runtime/011-caddy-phpfpm:
+	cd runtimes/011_caddy_phpfpm && docker compose down
+
+## shell/runtime/011-caddy-phpfpm	:	Login to 011 Runtime: Caddy + PHP-FPM..
+shell/runtime/011-caddy-phpfpm:
+	@docker container exec -it 011_caddy_phpfpm bash
+=======
 #################### 010 Adapterman ####################
 ##
 ## start/runtime/010-adapterman	:	Start 010 Runtime: Adapterman.
