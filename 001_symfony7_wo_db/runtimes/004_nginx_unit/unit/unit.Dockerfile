@@ -1,4 +1,4 @@
-FROM unit:php8.2
+FROM unit:php8.3
 
 RUN set -xe; \
     apt update; \
