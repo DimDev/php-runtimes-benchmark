@@ -30,7 +30,7 @@ http://localhost http://symfony7site {
 	}
 
 	root * public/
-	encode zstd gzip
+	#encode zstd gzip
 
 	# Uncomment the following lines to enable Mercure and Vulcain modules
 	#mercure {

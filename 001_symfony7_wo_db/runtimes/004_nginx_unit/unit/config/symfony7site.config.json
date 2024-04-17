@@ -56,7 +56,7 @@
           "opcache.preload_user": "root",
           "opcache.validate_timestamps": "0",
           "opcache.memory_consumption": "256",
-          "opcache.max_accelerated_files": "20000",
+          "opcache.max_accelerated_files": "20000"
         }
       }
     }

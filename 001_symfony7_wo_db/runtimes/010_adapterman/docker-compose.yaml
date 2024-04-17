@@ -1,0 +1,24 @@
+services:
+  010_adapterman:
+    build:
+      context: ../../
+      dockerfile: "./runtimes/010_adapterman/adapterman/adapterman.Dockerfile"
+    image: "010_adapterman"
+    container_name: "010_adapterman"
+    hostname: symfony7site
+    ports:
+      - '8000:80'
+    networks:
+      - php-benchmarks
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1gb'
+        reservations:
+          cpus: '1'
+          memory: '1gb'
+
+networks:
+  php-benchmarks:
+    name: php-benchmarks
