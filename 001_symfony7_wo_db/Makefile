@@ -2,6 +2,14 @@
 help : Makefile
 	@sed -n 's/^##//p' $<
 
+
+vus := 100
+duration := 30s
+reqs := 1000
+#bench_port := :80
+bench_url := http://symfony7site$(bench_port)/?firstName=Randomlfirstname&lastName=Randomlastname
+
+
 ##
 #################### 001 APACHE + mod_php ####################
 ##
@@ -245,7 +253,7 @@ down/runtime/011-caddy-phpfpm:
 ## shell/runtime/011-caddy-phpfpm	:	Login to 011 Runtime: Caddy + PHP-FPM..
 shell/runtime/011-caddy-phpfpm:
 	@docker container exec -it 011_caddy_phpfpm bash
-=======
+
 #################### 010 Adapterman ####################
 ##
 ## start/runtime/010-adapterman	:	Start 010 Runtime: Adapterman.
@@ -272,75 +280,18 @@ shell/runtime/010-adapterman:
 #################### Load Testing ####################
 ##
 
-## run/loadtest/ab-n1000-c5	:	Run "ab -n 1000 -c 5 URL"
-run/loadtest/ab-n1000-c5:
-	docker run --rm --name ab-loadttest --network php-benchmarks httpd:2.4.58-bookworm ab -n 1000 -c 5 "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
+## run/loadtest/ab		:	Run ab, reqs=1000 (default) vus=100 (default)
+run/loadtest/ab:
+	docker run --rm --name ab-loadttest --network php-benchmarks httpd:2.4.58-bookworm ab -n $(reqs) -c $(vus) $(bench_url)
 
-## run/loadtest/ab-n1000-c10	:	Run "ab -n 1000 -c 10 URL"
-run/loadtest/ab-n1000-c10:
-	docker run --rm --name ab-loadttest --network php-benchmarks httpd:2.4.58-bookworm ab -n 1000 -c 10 "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
+## run/loadtest/k6		:	Run k6 vus=100 (default) duration=30s (default)
+run/loadtest/k6:
+	docker run --rm --net php-benchmarks -i grafana/k6 run --vus $(vus) --duration $(duration) - <./testing-tools/k6_bench.js
 
-## run/loadtest/ab-n1000-c100	:	Run "ab -n 1000 -c 100 URL"
-run/loadtest/ab-n1000-c100:
-	docker run --rm --name ab-loadttest --network php-benchmarks httpd:2.4.58-bookworm ab -n 1000 -c 100 "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
+## run/loadtest/bombardier	:	Run bombardier vus=100 (default) duration=30s (default)
+run/loadtest/bombardier:
+	docker run --rm --name bombardier-loadttest --network php-benchmarks  alpine/bombardier:1.2.6 -c $(vus) -d $(duration) $(bench_url)
 
-## run/loadtest/ab-n10000-c1000	:	Run "ab -n 10000 -c 1000 URL"
-run/loadtest/ab-n10000-c1000:
-	docker run --rm --name ab-loadttest --network php-benchmarks httpd:2.4.58-bookworm ab -n 10000 -c 1000	"http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
-
-## run/loadtest/k6-vus5-dur10s	:	Run k6 vus:5 duration: 10s
-run/loadtest/k6-vus5-dur30s:
-	docker run --rm --net php-benchmarks -i grafana/k6 run - <./testing-tools/k6/script_vus5_dur30s.js
-
-## run/loadtest/k6-vus10-dur30s	:	Run k6 vus:10 duration: 30s
-run/loadtest/k6-vus10-dur30s:
-	docker run --rm --net php-benchmarks -i grafana/k6 run - <./testing-tools/k6/script_vus10_dur30s.js
-
-## run/loadtest/k6-vus100-dur30s	:	Run k6 vus:100 duration: 30s
-run/loadtest/k6-vus100-dur30s:
-	docker run --rm --net php-benchmarks -i grafana/k6 run - <./testing-tools/k6/script_vus100_dur30s.js
-
-## run/loadtest/k6-vus1000-dur30s	:	Run k6 vus:1000 duration: 30s
-run/loadtest/k6-vus1000-dur30s:
-	docker run --rm --net php-benchmarks -i grafana/k6 run - <./testing-tools/k6/script_vus1000_dur30s.js
-
-## run/loadtest/k6-vus10000-dur30s	:	Run k6 vus:10000 duration: 30s
-run/loadtest/k6-vus10000-dur30s:
-	docker run --rm --net php-benchmarks -i grafana/k6 run - <./testing-tools/k6/script_vus10000_dur30s.js
-
-## run/loadtest/bombardier-c5-d30s	:	Run bombardier concurrent connections: 5, duration: 30s
-run/loadtest/bombardier-c5-d30s:
-	docker run --rm --name bombardier-loadttest --network php-benchmarks  alpine/bombardier:1.2.6 -c 5 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
-
-## run/loadtest/bombardier-c10-d30s	:	Run bombardier concurrent connections: 10, duration: 30s
-run/loadtest/bombardier-c10-d30s:
-	docker run --rm --name bombardier-loadttest --network php-benchmarks  alpine/bombardier:1.2.6 -c 10 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
-
-## run/loadtest/bombardier-c100-d30s	:	Run bombardier concurrent connections: 100, duration: 30s
-run/loadtest/bombardier-c100-d30s:
-	docker run --rm --name bombardier-loadttest --network php-benchmarks  alpine/bombardier:1.2.6 -c 100 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
-
-## run/loadtest/bombardier-c1000-d30s	:	Run bombardier concurrent connections: 1000, duration: 30s
-run/loadtest/bombardier-c1000-d30s:
-	docker run --rm --name bombardier-loadttest --network php-benchmarks  alpine/bombardier:1.2.6 -c 1000 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
-
-## run/loadtest/bombardier-c10000-d30s	:	Run bombardier concurrent connections: 10000, duration: 30s
-run/loadtest/bombardier-c10000-d30s:
-	docker run --rm --name bombardier-loadttest --network php-benchmarks  alpine/bombardier:1.2.6 -c 10000 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
-
-## run/loadtest/wrk-c5-d30s	:	Run wrk, concurrent connections: 5, duration: 30s
-run/loadtest/wrk-c5-d30s:
-	docker run --rm --name wrk-loadtest --network php-benchmarks williamyeh/wrk:4.0.2 -c 5 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
-
-
-## run/loadtest/wrk-c10-d30s	:	Run wrk, concurrent connections: 10, duration: 30s
-run/loadtest/wrk-c10-d30s:
-	docker run --rm --name wrk-loadtest --network php-benchmarks williamyeh/wrk:4.0.2 -c 10 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
-
-## run/loadtest/wrk-c100-d30s	:	Run wrk, concurrent connections: 100, duration: 30s
-run/loadtest/wrk-c100-d30s:
-	docker run --rm --name wrk-loadtest --network php-benchmarks williamyeh/wrk:4.0.2 -c 100 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
-
-## run/loadtest/wrk-c1000-d30s	:	Run wrk, concurrent connections: 1000, duration: 30s
-run/loadtest/wrk-c1000-d30s:
-	docker run --rm --name wrk-loadtest --network php-benchmarks williamyeh/wrk:4.0.2 -t 1 -c 1000 -d 30s "http://symfony7site/?firstName=Randomlfirstname&lastName=Randomlastname"
+## run/loadtest/wrk		:	Run wrk, vus=100 (default) duration=30s (default)
+run/loadtest/wrk:
+	docker run --rm --name wrk-loadtest --network php-benchmarks williamyeh/wrk:4.0.2 -c $(vus) -d $(duration) $(bench_url)
