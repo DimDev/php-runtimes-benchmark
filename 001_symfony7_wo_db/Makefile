@@ -305,4 +305,5 @@ run/bench: start/runtime/$(runtime) run/loadtest/k6 stop/runtime/$(runtime)
 run/bench/all:
 	@for name in $(runtimes); do \
 		make run/bench runtime=$${name}; \
+		sleep 3; \
 	done
