@@ -9,6 +9,8 @@ reqs := 1000
 #bench_port := :80
 bench_url := http://symfony7site$(bench_port)/?firstName=Randomlfirstname&lastName=Randomlastname
 
+dirs := $(sort $(wildcard runtimes/*))
+runtimes := $(subst _,-,$(notdir $(dirs)))
 
 ##
 #################### 001 APACHE + mod_php ####################
@@ -295,3 +297,12 @@ run/loadtest/bombardier:
 ## run/loadtest/wrk		:	Run wrk, vus=100 (default) duration=30s (default)
 run/loadtest/wrk:
 	docker run --rm --name wrk-loadtest --network php-benchmarks williamyeh/wrk:4.0.2 -c $(vus) -d $(duration) $(bench_url)
+
+run/bench: start/runtime/$(runtime) run/loadtest/k6 stop/runtime/$(runtime)
+	@echo ---- $(runtime) ----
+
+## run/bench/all			:	Run bench with k6, vus=100 (default) duration=30s (default)
+run/bench/all:
+	@for name in $(runtimes); do \
+		make run/bench runtime=$${name}; \
+	done
