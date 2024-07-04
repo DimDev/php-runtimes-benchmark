@@ -1,3 +1,4 @@
+FROM ghcr.io/roadrunner-server/roadrunner:2023.3.12 AS roadrunner
 FROM php:8.3-cli
 
 RUN set -xe; \
@@ -17,7 +18,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
         bcmath \
         sockets \
         zip && \
-    install-php-extensions @composer;
+    install-php-extensions @composer-2.6.6;
 
 RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 COPY ./runtimes/005_roadrunner/roadrunner/php.ini /usr/local/etc/php/conf.d/custom-php.ini
@@ -36,8 +37,8 @@ RUN rm -rf vendor && \
     php bin/console cache:clear && \
     php bin/console cache:warmup
 
-COPY --from=ghcr.io/roadrunner-server/roadrunner:2023.3.8 /usr/bin/rr /usr/bin/rr
+COPY --from=roadrunner /usr/bin/rr /usr/local/bin/rr
 
 EXPOSE 80
 
-CMD ["rr", "serve"]
+CMD ["rr", "serve", "-c", ".rr.yaml"]

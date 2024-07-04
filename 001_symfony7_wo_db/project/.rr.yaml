@@ -8,7 +8,7 @@ server:
 
 
 http:
-  address: 0.0.0.0:80
+  address: 0.0.0.0:8080
   pool:
     # Debug mode for the pool. In this mode, pool will not pre-allocate the worker. Worker (only 1, num_workers ignored) will be allocated right after the request arrived.
     #
